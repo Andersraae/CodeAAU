@@ -1,1 +1,0 @@
-- Vejleder: Johannes Bjerva jbjerva@cs.aau.dk
