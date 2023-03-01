@@ -1,4 +1,1 @@
-# AAUCode
-# CodeAAU
-# CodeAAU
 # CodeAAU
