@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= title
+  h1(id='noget')= title
   p Welcome to #{title}
+  script.
+    noget.addEventListener('click', () => {
+      console.log('skriver noget her')
+    });
