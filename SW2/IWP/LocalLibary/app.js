@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+
 var app = express();
 
 // view engine setup
@@ -21,6 +22,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// Set up mongoose connection 
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
+const mongoDB = 'mongodb+srv://andersraae01:password1234@locallibary.wqqoavu.mongodb.net/LocalLibary?retryWrites=true&w=majority';
+
+main().catch(err => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

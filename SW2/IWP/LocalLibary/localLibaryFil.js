@@ -1,0 +1,1 @@
+const mongoDBURL = "mongodb+srv://andersraae01:eNMgx%24_Rgvv8FR%40@locallibary.wqqoavu.mongodb.net/local_libary?retryWrites=true&w=majority";
