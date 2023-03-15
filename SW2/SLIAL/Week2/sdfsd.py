@@ -9,6 +9,14 @@
 import math
 import numpy as np
 
-p = np.log(2, 8^2)
+tikkimasala = ['Tikki masala', (44.3 + 14.9)/2]
+friedrice = ['Fried rice', (25 + 7 + 8 + 18 + 9)/2]
 
-print(p)
+koteletter = ['Kottelet ret', (54.95 + 16.95)/2]
+
+print(tikkimasala)
+print(friedrice)
+print(koteletter)
+
+print('Anders skal have ' + (str)(tikkimasala[1] + friedrice[1]))
+print('Te skal have ' + (str)(koteletter[1]))
