@@ -13,7 +13,6 @@ A = np.array([[1, 1, 1],
 # print(np.matrix.round(np.matmul(I, np.linalg.inv(B))))
 print(np.matmul(A,B))
 
-
 b = np.array([[3], [-5/2], [1/2]])
 
 print()

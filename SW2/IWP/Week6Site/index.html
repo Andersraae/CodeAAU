@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My clock page</title>
+</head>
+<body>
+<p class="clock"></p>
+
+<button id="start" onclick="startTimer">Start</button>
+<button id="stop" onclick="stopTimer">Stop</button>
+<button id="reset" onclick="resetTimer">Reset</button>
+
+<script>
+
+    let createClock;
+    let startButton = document.getElementById('start');
+    let stopButton = document.getElementById('stop');
+    let resetButton = document.getElementById('reset');
+
+    startButton.addEventListener('click', startTimer)
+    stopButton.addEventListener('click', stopTimer)
+    resetButton.addEventListener('click', resetTimer)
+
+    let startTime = new Date.now();
+    let elapsedTime = 0;
+    document.querySelector('.clock').textContent = (startTime - elapsedTime).toString();
+
+    function updateTime() {
+        document.querySelector('.clock').textContent = '' + (startTime - elapsedTime);
+    }
+    function startTimer() {
+        createClock = setInterval(updateTime, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(createClock);
+    }
+    function resetTimer() {
+        clearInterval(createClock);
+    }
+
+</script>
+</body>
+</html>
