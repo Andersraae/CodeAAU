@@ -1,21 +1,19 @@
-const { ObjectId } = require('bson');
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
 const BookSchema = new Schema({
-    title: { type: String, required: true },
-    author: { type: Schema.Types.ObjectId, ref: 'Author', required: true },
-    summary: { type: String, required: true },
-    isbn: { type: String, required: true },
-    genre: [{ type: Schema.Types.ObjectId, ref: 'Genre' }],
+  title: { type: String, required: true },
+  author: { type: Schema.ObjectId, ref: "Author", required: true },
+  summary: { type: String, required: true },
+  isbn: { type: String, required: true },
+  genre: [{ type: Schema.ObjectId, ref: "Genre" }],
 });
 
-// Vitual for book's url
-BookSchema.virtual('url').get(function () {
-    // We don't use an arrow function as we'll need the this object
-    return `/catalog/book/${this._id}`;
+// Virtual for this book instance URL.
+BookSchema.virtual("url").get(function () {
+  return "/catalog/book/" + this._id;
 });
 
-// Export model
-module.exports = mongoose.model('Book', BookSchema);
+// Export model.
+module.exports = mongoose.model("Book", BookSchema);
