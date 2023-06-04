@@ -3,3 +3,14 @@
   padding: 0;
   list-style: none;
 }
+
+.authorImage {
+  margin-left: 0;
+  height: 60pt;
+  width: 60pt;
+}
+
+.authorDetailHeader {
+  display:flex; 
+  align-items:center
+}

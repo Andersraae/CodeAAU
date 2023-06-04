@@ -1,21 +1,31 @@
 extends layout
 
 block content
-  
-  img(src=author.image_path_string)
-  h1 Author: #{author.name}
-  p #{author.lifespan}
+  div(class="authorDetailHeader") 
+    if author.image_path
+      img(src='/images/' + author.image_path, class="authorImage")
+      div(style='margin-left:20px; margin-top:20px')
+        if author.image_path
+          h1 Author: #{author.name}
+        else
+          h1(style='margin-left:0') Author: #{author.name}
+        p #{author.lifespan}
+    else 
+      div(style='margin-left:0px; margin-top:20px')
+        if author.image_path
+          h1 Author: #{author.name}
+        else
+          h1(style='margin-left:0') Author: #{author.name}
+        p #{author.lifespan}
 
-  div(style='margin-left:20px;margin-top:20px')
+  h4 Books
 
-    h4 Books
-
-    dl
-    each book in author_books
-      dt
-        a(href=book.url) #{book.title}
-      dd #{book.summary}
-
+  dl
+    if author_books.length > 0
+      each book in author_books
+        dt
+          a(href=book.url) #{book.title}
+        dd #{book.summary}
     else
       p This author has no books.
 
@@ -24,3 +34,31 @@ block content
     a(href=author.url+'/delete') Delete author
   p
     a(href=author.url+'/update') Update author
+
+
+//- extends layout
+
+//- block content
+  
+//-   img(src='/images/' + author.image_path, class="authorImage")
+//-   h1 Author: #{author.name}
+//-   p #{author.lifespan}
+
+//-   div(style='margin-left:20px;margin-top:20px')
+
+//-     h4 Books
+
+//-     dl
+//-     each book in author_books
+//-       dt
+//-         a(href=book.url) #{book.title}
+//-       dd #{book.summary}
+
+//-     else
+//-       p This author has no books.
+
+//-   hr
+//-   p
+//-     a(href=author.url+'/delete') Delete author
+//-   p
+//-     a(href=author.url+'/update') Update author

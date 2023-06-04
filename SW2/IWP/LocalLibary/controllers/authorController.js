@@ -1,6 +1,17 @@
 const Author = require("../models/author");
 const Book = require("../models/book");
 
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/images/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({storage: storage})
+
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
@@ -42,6 +53,7 @@ exports.author_create_get = (req, res, next) => {
 
 // Handle Author create on POST.
 exports.author_create_post = [
+  upload.single("picture"),
   // Validate and sanitize fields.
   body("first_name")
     .trim()
@@ -65,11 +77,14 @@ exports.author_create_post = [
     .optional({ values: "falsy" })
     .isISO8601()
     .toDate(),
+  body("picture")
+    .optional(),
 
   // Process request after validation and sanitization.
   asyncHandler(async (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
+  
 
     // Create Author object with escaped and trimmed data
     const author = new Author({
@@ -77,7 +92,7 @@ exports.author_create_post = [
       family_name: req.body.family_name,
       date_of_birth: req.body.date_of_birth,
       date_of_death: req.body.date_of_death,
-      image_path: req.body.image_path,
+      image_path: req.file.filename,
     });
 
     if (!errors.isEmpty()) {
@@ -157,6 +172,7 @@ exports.author_update_get = asyncHandler(async (req, res, next) => {
 
 // Handle Author update on POST.
 exports.author_update_post = [
+  upload.single('picture'),
   // Validate and sanitize fields.
   body("first_name")
     .trim()
@@ -192,6 +208,7 @@ exports.author_update_post = [
       family_name: req.body.family_name,
       date_of_birth: req.body.date_of_birth,
       date_of_death: req.body.date_of_death,
+      image_path: req.file.filename,
       _id: req.params.id,
     });
 

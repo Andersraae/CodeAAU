@@ -45,9 +45,5 @@ AuthorSchema.virtual("date_of_death_yyyy_mm_dd").get(function () {
   return DateTime.fromJSDate(this.date_of_death).toISODate(); // format 'YYYY-MM-DD'
 });
 
-AuthorSchema.virtual("image_path_string").get(function () {
-    return this.image_path;
-})
-
 // Export model.
 module.exports = mongoose.model("Author", AuthorSchema);
